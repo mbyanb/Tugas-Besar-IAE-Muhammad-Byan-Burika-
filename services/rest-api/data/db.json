@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "id": "28e42798-d5c4-49c2-807f-e8d5c6dc1081",
+      "name": "User",
+      "email": "akun@gmail.com",
+      "password": "$2a$10$SZKhjOEgSIh2HPRpQPPLxeGwk6UC5LEamPkKZTQpOctyFq5WKmzP6",
+      "createdAt": "2025-12-11T14:08:27.579Z"
+    }
+  ],
+  "medical_history": [
+    {
+      "id": "b182141c-090d-4689-a879-85731394ab09",
+      "condition": "Flu",
+      "diagnosedDate": "2025-12-07",
+      "notes": "",
+      "createdAt": "2025-12-11T14:22:54.190Z"
+    },
+    {
+      "id": "d0704914-0266-4f92-9ef4-324e23074167",
+      "condition": "Pusing",
+      "diagnosedDate": "2025-12-17",
+      "notes": "",
+      "createdAt": "2025-12-11T14:38:34.507Z"
+    },
+    {
+      "id": "15c3ee5e-e041-4e86-bd76-20f36cb6e71e",
+      "condition": "Batuk",
+      "diagnosedDate": "2025-12-31",
+      "notes": "",
+      "createdAt": "2025-12-12T07:57:03.864Z"
+    },
+    {
+      "id": "bd4edb67-6dea-49d9-81fd-d0145d18e7ad",
+      "condition": "Pusing kedua",
+      "diagnosedDate": "2025-12-17",
+      "notes": "",
+      "createdAt": "2025-12-12T08:55:37.087Z"
+    }
+  ],
+  "publicKey": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn3J/Cp8k612PH9jc3z4D\r\n+K+0hVQyz4lIpIUwanAfCePUVK5b96ClpyWu1O+X+7a4epQ8K3a4jU6UUllSxoUl\r\nfjhBNMUXxtArmrRnsX/UxXU+wiIwdcVLljriQbgVPco52C+lRBXVT5IQiO/f38E/\r\nhxn7iu3IXjU2i1/SoklzjyEjpx9ptAx2v9jtfz9/BTVF1litn8CGTvi8NLoMsyGd\r\nXNKf9M0iS5TJiNdp7ua3EOMDPiI6F5t4WasLNDGKWmtyX2WPN68WrzPP9sKinTbJ\r\nV1gnsm7B9VCkzwzso3CK9Tzy6pDmpEwBciiKurvK/BWfhhs3LZKU55UH6V6XXTge\r\nKQIDAQAB\r\n-----END PUBLIC KEY-----\r\n",
+  "privateKey": "-----BEGIN RSA PRIVATE KEY-----\r\nMIIEogIBAAKCAQEAn3J/Cp8k612PH9jc3z4D+K+0hVQyz4lIpIUwanAfCePUVK5b\r\n96ClpyWu1O+X+7a4epQ8K3a4jU6UUllSxoUlfjhBNMUXxtArmrRnsX/UxXU+wiIw\r\ndcVLljriQbgVPco52C+lRBXVT5IQiO/f38E/hxn7iu3IXjU2i1/SoklzjyEjpx9p\r\ntAx2v9jtfz9/BTVF1litn8CGTvi8NLoMsyGdXNKf9M0iS5TJiNdp7ua3EOMDPiI6\r\nF5t4WasLNDGKWmtyX2WPN68WrzPP9sKinTbJV1gnsm7B9VCkzwzso3CK9Tzy6pDm\r\npEwBciiKurvK/BWfhhs3LZKU55UH6V6XXTgeKQIDAQABAoIBABUfhnwM6Z0IEn9z\r\na+Nj+a5hnJvd3oixqml9PupC5fcZ8ysFbv1HD4WtZNQkf5vNsPKFnn5a5ofLMAlu\r\nzZwAz0mW60XckdH5XxAfiUMxvlQrEarcplMxKtqBUjBxp4K9k9yI3K9AkzdM5Zrh\r\nPbqMr+gBMFqki1sLrVOug0mToIGxT4g9clADnw+fV40DtcQ75YZcwe2Iybd8Z/MY\r\nX6jJ8hLJ7JPB3efuL5/EThWhuMqXyL/gbeu2EJBjUSBZs+uJ8W3w2Olfzm06+uLU\r\njot5q5NkIVLgQXQeoKq6wNR/wIS9j94IeFPZNKfl6lEUroCsv4/7bEd+s6kJcTcN\r\ngr9k2BcCgYEA4Vk7kf89k5wJnpSFdwiUalAyMxuIOHDHZBhKq+xCJvlJw/hwqCUj\r\nyne8ITy1SzG5saqlUtCxkTbXL0JIIF4T0iFjvwfOgj0JMQrqJh4KO4FBu2Dh8fBO\r\nTN7WH4OKovejN9Fd8/1zF54+8VeuuZFSb5h4QxKgucakGkpNYa99CQcCgYEAtSKK\r\nrRxCwlCpEy2aOjtu3Jt8F3cfNZaUABsgz4uGXZWbOlv9cdscyxg+hNWFzU2NwbDc\r\nONXWGtw+BGY87eSPqNsAJtHDISaY6eOwirAz1KJ2Oww3iPjztw290I1gS8kI8CFw\r\nriqqzXCWdTQAb5Q7TNeRIGo2eDd4WUYd60Ouw08CgYBPfpn8G81OGBpwnbYjUpyA\r\nkH/U9Z5tQqOkFMmqsnJ3qzMxdZ/QQSHKF8j+9JqDxyvZl/gwKbyqHG12l2w4NtfJ\r\nJcw5JHjeCsgGS/Jjte8oJKXagwfRwFLu3SEuBspOSQuD8lCxdLQ4HbPYkXTqs3Ag\r\nO+oYxyZ5wrA7MgDwN+bk2wKBgEyJZ+d1xY+t3YNJBZ4Ndu6olGql3v4Zvje9PsPz\r\nxLbOfGTQcesmFqiKegBO6NazKm7peGRblriKz3m0aZJrvXgv8YR1pengEUTi/Lnd\r\nckkqzKJuqxipePGkUMxKsKHVNH2i46X0SW+9XxXu/zAmhlgVzjDQMGvjpGq0gffj\r\nBXlpAoGAbMTFtpZWcCNYBKmaTbhAhrQZ8bJyXcRPNprWHiNF3U8extPeae1I/4bb\r\nrZ8JxfK8lMWiJDr0bSvu7tFwVNYvguQlzHFB+k97J11vdkTYXL54eG/pTYpcXR9b\r\ndmd7RR6yt4LSCFPErqzw57jcb+aOX3OeMybIl1buSlXH/+PbqFQ=\r\n-----END RSA PRIVATE KEY-----\r\n"
+}
