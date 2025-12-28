@@ -2,10 +2,18 @@
   "users": [
     {
       "id": "28e42798-d5c4-49c2-807f-e8d5c6dc1081",
-      "name": "User",
+      "name": "Byans",
       "email": "akun@gmail.com",
       "password": "$2a$10$SZKhjOEgSIh2HPRpQPPLxeGwk6UC5LEamPkKZTQpOctyFq5WKmzP6",
       "createdAt": "2025-12-11T14:08:27.579Z"
+    },
+    {
+      "id": "admin-id-001",
+      "name": "Super Admin",
+      "email": "admin@vitaltrack.com",
+      "role": "admin",
+      "createdAt": "2025-12-25T13:19:54.886Z",
+      "password": "$2a$10$9J56qhJJ2.sUAdS89J37LO3TS545vYQ1NX1DLOWoQGF75kTKkV9Gy"
     }
   ],
   "medical_history": [
@@ -36,6 +44,27 @@
       "diagnosedDate": "2025-12-17",
       "notes": "",
       "createdAt": "2025-12-12T08:55:37.087Z"
+    },
+    {
+      "id": "108164f4-ce29-47c3-8ff3-3e13f4b589b2",
+      "condition": "Cancer",
+      "diagnosedDate": "2025-12-18",
+      "notes": "",
+      "createdAt": "2025-12-25T08:30:47.535Z"
+    },
+    {
+      "id": "550001ab-33c6-4692-88fd-cedb596475d6",
+      "condition": "Sariawan ",
+      "diagnosedDate": "2025-12-26",
+      "notes": "",
+      "createdAt": "2025-12-25T08:34:06.687Z"
+    },
+    {
+      "id": "0d3c289b-e57d-41d0-bb29-510413d07f15",
+      "condition": "Radang",
+      "diagnosedDate": "2025-12-11",
+      "notes": "",
+      "createdAt": "2025-12-25T10:50:11.472Z"
     }
   ],
   "publicKey": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn3J/Cp8k612PH9jc3z4D\r\n+K+0hVQyz4lIpIUwanAfCePUVK5b96ClpyWu1O+X+7a4epQ8K3a4jU6UUllSxoUl\r\nfjhBNMUXxtArmrRnsX/UxXU+wiIwdcVLljriQbgVPco52C+lRBXVT5IQiO/f38E/\r\nhxn7iu3IXjU2i1/SoklzjyEjpx9ptAx2v9jtfz9/BTVF1litn8CGTvi8NLoMsyGd\r\nXNKf9M0iS5TJiNdp7ua3EOMDPiI6F5t4WasLNDGKWmtyX2WPN68WrzPP9sKinTbJ\r\nV1gnsm7B9VCkzwzso3CK9Tzy6pDmpEwBciiKurvK/BWfhhs3LZKU55UH6V6XXTge\r\nKQIDAQAB\r\n-----END PUBLIC KEY-----\r\n",

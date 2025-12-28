@@ -1,66 +1,89 @@
 version: '3.8'
 
 services:
-  # User Service (REST API)
+  # 1. REST API
   rest-api:
     build: ./services/rest-api
     ports:
       - "3001:3001"
-    environment:
-      - PORT=3001
-      - NODE_ENV=production
     volumes:
       - ./services/rest-api:/app
       - /app/node_modules
     networks:
       - microservices-network
 
-  # Task Service (GraphQL API)
+  # 2. GraphQL API
   graphql-api:
     build: ./services/graphql-api
     ports:
       - "4000:4000"
-    environment:
-      - PORT=4000
-      - NODE_ENV=production
     volumes:
       - ./services/graphql-api:/app
       - /app/node_modules
     networks:
       - microservices-network
 
-  # API Gateway
+  # 3. Notification Service
+  notification-service:
+    build: ./services/notification-service
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./services/notification-service:/app
+      - /app/node_modules
+    environment:
+      - TZ=Asia/Jakarta
+    networks:
+      - microservices-network
+
+  # 4. Order Service (BARU - STORE)
+  order-service:
+    build: ./services/order-service
+    ports:
+      - "5002:5002"
+    volumes:
+      - ./services/order-service:/app
+      - /app/node_modules
+    environment:
+      - NOTIFICATION_SERVICE_URL=http://notification-service:5001
+    networks:
+      - microservices-network
+
+  # 5. API Gateway
   api-gateway:
     build: ./api-gateway
     ports:
       - "3000:3000"
     environment:
-      - PORT=3000
       - REST_API_URL=http://rest-api:3001
       - GRAPHQL_API_URL=http://graphql-api:4000
-      - NODE_ENV=production
+      - NOTIFICATION_SERVICE_URL=http://notification-service:5001
+      - ORDER_SERVICE_URL=http://order-service:5002
     depends_on:
       - rest-api
       - graphql-api
+      - notification-service
+      - order-service
     volumes:
       - ./api-gateway:/app
       - /app/node_modules
     networks:
       - microservices-network
 
-  # Frontend Application
+  # 6. Frontend App
   frontend-app:
-    build:
-      context: ./frontend-app
-      target: runner
+    build: ./frontend-app
     ports:
       - "3002:3000"
     environment:
-      # Frontend sekarang HANYA berbicara dengan Gateway
-      - NEXT_PUBLIC_API_GATEWAY_URL=http://localhost:3000
+      - NEXT_PUBLIC_API_URL=http://localhost:3000/api
       - NEXT_PUBLIC_GRAPHQL_URL=http://localhost:3000/graphql
+      - NEXT_PUBLIC_WS_URL=ws://localhost:3000/graphql
     depends_on:
       - api-gateway
+    volumes:
+      - ./frontend-app:/app
+      - /app/node_modules
     networks:
       - microservices-network
 

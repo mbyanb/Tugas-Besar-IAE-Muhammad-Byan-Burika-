@@ -18,16 +18,15 @@ app.use(express.json());
 // DATA STORE
 let healthLogs = [{ id: '1', category: 'VITAL', metric: 'Blood Pressure', value: '120/80', unit: 'mmHg', notes: 'Normal', createdAt: new Date().toISOString() }];
 
-// SCHEMA
+// --- PERBAIKAN ADA DI SINI (Menambahkan NUTRITION dan MOOD) ---
 const typeDefs = `
-  enum LogCategory { VITAL SYMPTOM ACTIVITY }
+  enum LogCategory { VITAL SYMPTOM ACTIVITY NUTRITION MOOD }
   type HealthLog { id: ID! category: LogCategory! metric: String! value: String! unit: String notes: String createdAt: String! }
   type Query { logs: [HealthLog!]! log(id: ID!): HealthLog }
   type Mutation { createLog(category: LogCategory!, metric: String!, value: String!, unit: String, notes: String): HealthLog! }
   type Subscription { logAdded: HealthLog! }
 `;
 
-// RESOLVERS
 const resolvers = {
   Query: { logs: () => healthLogs, log: (_, { id }) => healthLogs.find(l => l.id === id) },
   Mutation: {

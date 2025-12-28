@@ -1,85 +1,75 @@
 // File: services/rest-api/db.js
-
 const jsonfile = require('jsonfile');
 const path = require('path');
 const fs = require('fs');
-const forge = require('node-forge'); // Import library crypto
+const forge = require('node-forge');
+const bcrypt = require('bcryptjs');
 
-// Path ke folder data (yang akan kita mount)
 const dataDir = path.join(__dirname, 'data');
 const dbPath = path.join(dataDir, 'db.json');
 
-// Data default jika file tidak ada
+// --- 1. ADMIN DEFAULT ---
+const defaultAdmin = {
+  id: 'admin-id-001',
+  name: 'Super Admin',
+  email: 'admin@vitaltrack.com',
+  role: 'admin',
+  createdAt: new Date().toISOString()
+};
+
+// --- 2. DEFAULTS (FITUR LAMA TETAP DISIMPAN) ---
 const defaults = {
   users: [],
+  // Kita kembalikan 'teams' agar fitur asli tidak error jika nanti dipakai
   teams: [
     { id: 't1', name: 'Frontend Engineers', members: [] },
     { id: 't2', name: 'Backend Engineers', members: [] }
   ],
+  medical_history: [],
   publicKey: null,
   privateKey: null
 };
 
-// Pastikan folder 'data' ada
-if (!fs.existsSync(dataDir)) {
-  fs.mkdirSync(dataDir);
-}
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
 
-// Inisialisasi DB
 let db;
 try {
-  // Coba baca file
   db = jsonfile.readFileSync(dbPath);
 } catch (error) {
-  // Jika file tidak ada (atau error), buat file dengan data default
   console.log('No db.json found, creating one with defaults...');
   jsonfile.writeFileSync(dbPath, defaults, { spaces: 2 });
   db = defaults;
 }
 
-// === LOGIKA GENERATE KUNCI ===
-// Cek apakah kunci perlu dibuat
+// --- 3. PASTIKAN ADMIN ADA ---
+const ensureAdmin = async () => {
+    const adminExists = db.users.find(u => u.email === defaultAdmin.email);
+    if (!adminExists) {
+        console.log('Creating default Admin account...');
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash('admin123', salt);
+        
+        const newAdmin = { ...defaultAdmin, password: hashedPassword };
+        db.users.push(newAdmin);
+        
+        try {
+            jsonfile.writeFileSync(dbPath, db, { spaces: 2 });
+            console.log('✅ Admin created: admin@vitaltrack.com / admin123');
+        } catch (e) { console.error('Failed to save admin', e); }
+    }
+};
+ensureAdmin();
+
+// --- 4. RSA KEYS ---
 if (!db.publicKey || !db.privateKey) {
-  console.log('Generating new 2048-bit RSA key pair...');
-  
-  // Buat kunci RSA 2048-bit
+  console.log('Generating RSA keys...');
   const keypair = forge.pki.rsa.generateKeyPair({ bits: 2048 });
-  const publicKeyPem = forge.pki.publicKeyToPem(keypair.publicKey);
-  const privateKeyPem = forge.pki.privateKeyToPem(keypair.privateKey);
-
-  // Simpan kunci ke objek 'db'
-  db.publicKey = publicKeyPem;
-  db.privateKey = privateKeyPem;
-
-  // Tulis kembali ke file db.json
-  try {
-    jsonfile.writeFileSync(dbPath, db, { spaces: 2 });
-    console.log('✅ New RSA keys generated and saved to /app/data/db.json');
-  } catch (e) {
-    console.error('CRITICAL: Failed to save generated keys!', e);
-  }
-} else {
-  console.log('Keys loaded from existing db.json.');
+  db.publicKey = forge.pki.publicKeyToPem(keypair.publicKey);
+  db.privateKey = forge.pki.privateKeyToPem(keypair.privateKey);
+  try { jsonfile.writeFileSync(dbPath, db, { spaces: 2 }); } catch (e) {}
 }
 
-// Ekspor fungsi untuk membaca dan menulis
 module.exports = {
-  readDb: () => {
-    try {
-      // Selalu baca versi terbaru dari file
-      return jsonfile.readFileSync(dbPath);
-    } catch (e) {
-      console.error('Error reading db.json:', e);
-      return db; // Kembalikan dari memori jika gagal baca
-    }
-  },
-  writeDb: (data) => {
-    try {
-      jsonfile.writeFileSync(dbPath, data, { spaces: 2 });
-      // Perbarui juga 'db' di memori
-      db = data;
-    } catch (e) {
-      console.error('Error writing to db.json:', e);
-    }
-  },
+  readDb: () => { try { return jsonfile.readFileSync(dbPath); } catch (e) { return db; } },
+  writeDb: (data) => { try { jsonfile.writeFileSync(dbPath, data, { spaces: 2 }); db = data; } catch (e) {} },
 };
